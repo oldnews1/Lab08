@@ -14,7 +14,6 @@ public class CustomList {
         cities.add(city);
     }
 
-    
 
     // Will be implemented later using TDD (leave blank for now)
     // public boolean hasCity(City city) { ... }
@@ -28,5 +27,9 @@ public class CustomList {
         } else {
             throw new IllegalArgumentException("City not found");
         }
+    }
+
+    public int countCities() {
+        return cities.size();
     }
 }
