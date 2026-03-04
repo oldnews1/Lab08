@@ -5,6 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomListTest {
+    private CustomList mockCityList() {
+        CustomList cityList = new CustomList();
+        cityList.addCity(mockCity());
+        return cityList;
+    }
+
+    private City mockCity() {
+        return new City("Edmonton", "Alberta");
+    }
+
     @Test
     public void testHasCity() {
         CustomList list = new CustomList();
@@ -15,16 +25,16 @@ public class CustomListTest {
     }
 
     @Test
-    void testDelete() {
-        CityList cityList = mockCityList();
+    void testDeleteCity() {
+        CustomList cityList = mockCityList();
         City city = new City("Calgary", "Alberta");
-        cityList.add(city);
-        cityList.delete(new City("Edmonton", "Alberta"));
+        cityList.addCity(city);
+        cityList.deleteCity(new City("Edmonton", "Alberta"));
         assertFalse(cityList.hasCity(new City("Edmonton", "Alberta")));
-        cityList.delete(city);
+        cityList.deleteCity(city);
         assertFalse(cityList.hasCity(city));
         assertThrows(IllegalArgumentException.class, () -> {
-            cityList.delete(new City("Toronto", "Ontario"));
+            cityList.deleteCity(new City("Toronto", "Ontario"));
         });
     }
 }
